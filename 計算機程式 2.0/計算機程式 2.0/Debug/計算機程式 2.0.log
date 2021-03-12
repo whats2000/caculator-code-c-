@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\user\source\repos\計算機程式 2.0\計算機程式 2.0\rescource\Number.hpp(101,22): warning C4018: '<': signed/unsigned 不相符
+C:\Users\user\source\repos\計算機程式 2.0\計算機程式 2.0\rescource\Number.hpp(129,22): warning C4018: '<': signed/unsigned 不相符
+  計算機程式 2.0.vcxproj -> C:\Users\user\source\repos\計算機程式 2.0\Debug\計算機程式 2.0.exe

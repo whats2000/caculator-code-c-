@@ -1,0 +1,21 @@
+﻿計算機程式 2.0.exe' (Win32): 已載入 'C:\Users\user\source\repos\計算機程式 2.0\Debug\計算機程式 2.0.exe'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\ntdll.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\kernel32.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\KernelBase.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Program Files\AVG\Antivirus\x86\aswhook.dll'。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\msvcp140d.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\vcruntime140d.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\ucrtbased.dll'。已載入符號。
+0x198c 執行緒以返回碼 0 (0x0) 結束。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\kernel.appcore.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\msvcrt.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\rpcrt4.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\sspicli.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\cryptbase.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\bcryptprimitives.dll'。已載入符號。
+計算機程式 2.0.exe' (Win32): 已載入 'C:\Windows\SysWOW64\sechost.dll'。已載入符號。
+0x54ec 執行緒以返回碼 0 (0x0) 結束。
+0x4550 執行緒以返回碼 0 (0x0) 結束。
+0x2c74 執行緒以返回碼 0 (0x0) 結束。
+0x54fc 執行緒以返回碼 0 (0x0) 結束。
+'[22120] 計算機程式 2.0.exe' 程式以返回碼 0 (0x0) 結束。
