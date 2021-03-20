@@ -23,11 +23,14 @@ int main(int argc, char* argv[])
 	//測試加減 (兩者符號必須一致)
 	Number a, b, c;
 	string a0, b0;
+	char numcase;
 	long double a1 = 0, b1 = 0 , c1 = 0;
 	cout << "輸入a = ";
 	cin >> a0;
 	cout << "輸入b = ";
 	cin >> b0;
+	cout << "輸入運算 = ";
+	cin >> numcase;
 	a.set_number(a0);
 	b.set_number(b0);
 	try {
@@ -41,16 +44,28 @@ int main(int argc, char* argv[])
 	catch (int x) {
 		cout << "意料外錯誤 錯誤編號" << x;
 	}
-	c = a + b;
+	switch (numcase)
+	{
+	case '+':
+		c = a + b;
+		c1 = a1 + b1;
+		break;
+	case '-':
+		c = a - b;
+		c1 = a1 - b1;
+		break;
+	default:
+		break;
+	}
 	cout << "   ";
 	a.print_number();
-	cout << " +)";
+	cout << " "<< numcase <<")";
 	b.print_number();
 	for (int i = 0; i < 60; i++)
 		cout << "—";
 	cout << endl;
 	cout << " = ";
 	c.print_number();
-	c1 = a1 + b1;
+	
 	cout << "內建double卻變成了" << setprecision(1000) << c1;
 }

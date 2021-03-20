@@ -59,6 +59,7 @@ public:
 			cout << "0 . "; // 預設輸出
 		else
 		{
+			//cout << "大小 " << this->integer.size() << " 非空陣列" << endl;
 			cout << this->integer.back();
 			for (auto it = this->integer.rbegin() + 1; it != this->integer.rend(); ++it)
 			{
@@ -87,9 +88,9 @@ public:
 	{
 		Number result;
 		bool flag = false; //進位檢視
-		int res;
+		unsigned int res;
 		result.positive = this->positive; //(正 加 正)或(負 加 負)
-		bool isdecimalend = true;		  //處理最終位進位去除多餘0，節省記憶體
+		bool isempty = true;			  //處理最終位進位去除多餘0，節省記憶體
 
 		if (this->decimal.size() < obj.decimal.size())
 			this->decimal.swap(obj.decimal);
@@ -112,9 +113,9 @@ public:
 			{
 				flag = false;
 			}
-			if (res != 0) //檢測是否為0
-				isdecimalend = false;
-			if (isdecimalend != true)
+			if (res != 0 && isempty) //檢測是否為0
+				isempty = false;
+			if (isempty != true)
 				result.decimal.push_back(res + '0');
 		}
 
@@ -146,5 +147,150 @@ public:
 				result.integer.push_back('1');
 		}
 		return result;
+	}
+
+	//減法
+	Number operator-(Number& obj)
+	{
+		Number result;
+		bool flag = false; //借位檢視
+		int res;
+		bool isempty = true; //處理最終位進位去除多餘0，節省記憶體
+
+		//將等效加法轉移
+		if (this->positive == true && obj.positive == false)
+		{
+			result = *this + obj;
+			result.positive = true; //覆蓋正負
+			return result;
+		}
+		else if (this->positive == false && obj.positive == true)
+		{
+			result = *this + obj;
+			result.positive = false; //覆蓋正負
+			return result;
+		}
+
+		// 等效 正 + 負 / 負 + 正 (判定大小決定positive)
+
+		//小數補全
+		while (this->decimal.size() != obj.decimal.size())
+		{
+			if (this->decimal.size() > obj.decimal.size())
+				obj.decimal.insert(obj.decimal.begin(), '0');
+			else
+				this->decimal.insert(this->decimal.begin(), '0');
+		}
+		//數字比大小
+		if (this->integer.size() > obj.integer.size())
+		{
+			cout << "整數位數檢測區分" << endl;
+			goto bypass;
+		}
+		else if (this->integer.size() < obj.integer.size()) //第一層檢測 比整數位數
+		{
+			cout << "整數位數檢測區分" << endl; //數字長固定放前方
+			this->integer.swap(obj.integer);
+			this->decimal.swap(obj.decimal);
+			swap(this->positive, obj.positive);
+
+			goto bypass;
+		}
+		else //第二層如果位數一樣比整數部分
+		{
+			for (auto i = 0; i < this->integer.size(); i++)
+			{
+				if (this->integer[i] != obj.integer[i])
+				{
+					cout << "整數數字檢測區分" << endl;
+					if ((this->integer[i] - '0') < (obj.integer[i])) //把較大數字擺前面
+					{
+						this->integer.swap(obj.integer);
+						this->decimal.swap(obj.decimal);
+						swap(this->positive, obj.positive);
+					}
+					goto bypass;
+				}
+			}
+			//整數一樣檢測小數
+			for (auto i = 0; i < this->decimal.size(); i++)
+			{
+				if (this->decimal[i] != obj.decimal[i])
+				{
+					cout << "小數數字檢測區分" << endl;
+					if ((this->decimal[i] - '0') < (obj.decimal[i])) //把較大數字擺前面
+					{
+						this->decimal.swap(obj.decimal);
+						swap(this->positive, obj.positive);
+					}
+					goto bypass;
+				}
+			}
+		bypass: //檢測完成
+			result.positive = this->positive;
+
+			//小數處理
+			for (auto i = 0; i < this->decimal.size(); i++)
+			{
+				res = (this->decimal[i] - '0') - (obj.decimal[i] - '0') - flag;
+				if (res < 0)
+				{
+					res += 10;
+					flag = true;
+				}
+				else
+				{
+					flag = false;
+				}
+				//cout << "res = " << res << " flag = " << flag << endl;
+				if (res != 0 && isempty)
+					isempty = false;
+				if (!isempty)
+				{
+					result.decimal.push_back(res + '0');
+				}
+			}
+			//整數處理
+			for (auto i = 0; i < this->integer.size(); i++)
+			{
+				if (obj.integer[i] != 0)
+					res = (this->integer[i] - '0') - (obj.integer[i] - '0') - flag;
+				else
+					res = (this->integer[i] - '0') - flag;
+				if (res < 0)
+				{
+					res += 10;
+					flag = true;
+				}
+				else
+				{
+					flag = false;
+				}
+				//cout << "res = " << res << " flag = " << flag << endl;
+
+				result.integer.push_back(res + '0');
+			}
+			//清除整數多餘0
+			for (vector<char>::reverse_iterator it = result.integer.rbegin(); it != result.integer.rend(); it++)
+			{
+				cout << "debug";
+				if (*it == '0')
+					result.integer.pop_back();
+				else
+					break;
+			}
+
+			//除錯用
+
+			cout << "debug" << endl;
+			Number a = *this;
+			cout << "a = ";
+			a.print_number();
+			cout << "b = ";
+			obj.print_number();
+
+			//=====
+			return result;
+		}
 	}
 };
